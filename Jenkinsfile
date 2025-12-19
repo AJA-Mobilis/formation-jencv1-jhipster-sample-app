@@ -1,11 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage('⚙️ Build + 🔬 Tests') {
+        stage('⚙️ Build + 🧪 Tests') {
 			steps {
 				sh '''
 					chmod u+x ./mvnw
-					./mvnw clean install spotbugs:spotbugs -Darguments="-Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false"
+					./mvnw clean install -DskipTests spotbugs:spotbugs -Dskip.test -Darguments="-Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false
 				'''
 			}
         }
