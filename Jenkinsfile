@@ -12,8 +12,6 @@ pipeline {
 						sh './mvnw surefire:test spotbugs:spotbugs'
 					}
 				)
-					
-				'''
 				archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
 			}
         }
