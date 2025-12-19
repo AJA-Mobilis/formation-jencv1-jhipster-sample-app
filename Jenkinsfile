@@ -1,26 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('Parallel stages') {
-			parallel {
-				stage('⚙️ Build') {
-					steps {
-						sh '''
-							chmod u+x ./mvnw
-							./mvnw clean install -DskipTests -Darguments="-Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false"
-						'''
-					}
-				}
-				stage('🧪 Tests') {
-					steps {
-						sh '''
-							chmod u+x ./mvnw
-							./mvnw surefire:test spotbugs:spotbugs
-						'''
-					}
-				}
+        stage('⚙️ Build + 🔬 Tests') {
+			steps {
+				sh '''
+					chmod u+x ./mvnw
+					./mvnw clean install surefire:test spotbugs:spotbugs -Darguments="-Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false
+				'''
 			}
         }
+		stage('📦 Archiving Artefacts') {
+			steps {
+				archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
+			}
+		}
     }
 
     post {
