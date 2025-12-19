@@ -1,21 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout Git') {
-            steps {
-                checkout scmGit(
-					branches: [[name: '*/main']], 
-					extensions: [cleanBeforeCheckout(deleteUntrackedNestedRepositories: true)], 
-					userRemoteConfigs: [[url: 'https://github.com/AJA-Mobilis/formation-jencv1-jhipster-sample-app']]
-				)
-            }
-        }
-
         stage('Build') {
 			steps {
 				sh '''
-					ls -al
-					chmod u+x ./mwnw
+					chmod u+x ./mvnw
 					./mvnw clean install -DskipTests -Darguments="-Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false"
 				'''
 				archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
