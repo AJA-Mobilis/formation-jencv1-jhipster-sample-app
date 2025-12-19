@@ -3,13 +3,18 @@ pipeline {
     stages {
         stage('⚙️ Build + 🧪 Tests') {
 			steps {
-				sh 'chmod u+x ./mvnw'
 				parallel(
 					build: {
-						sh './mvnw clean install -DskipTests -Darguments="-Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false"'
+						sh '''
+							chmod u+x ./mvnw
+							./mvnw clean install -DskipTests -Darguments="-Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false"
+						'''
 					},
 					tests: {
-						sh './mvnw surefire:test spotbugs:spotbugs'
+						sh '''
+							chmod u+x ./mvnw
+							./mvnw surefire:test spotbugs:spotbugs
+						'''
 					}
 				)
 				archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
