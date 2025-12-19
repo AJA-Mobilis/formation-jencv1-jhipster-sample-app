@@ -14,6 +14,7 @@ pipeline {
         stage('Build') {
 			steps {
 				sh '''
+					ls -al
 					chmod u+x ./mwnw
 					./mvnw clean install -DskipTests -Darguments="-Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false"
 				'''
