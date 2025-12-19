@@ -16,7 +16,10 @@ pipeline {
 
         stage('Build') {
 			steps {
-				sh './mvnw clean install -DskipTests -Darguments="-Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false"'
+				sh '''
+					chmod u+x ./mwnw
+					./mvnw clean install -DskipTests -Darguments="-Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false"
+				'''
 				archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
 			}
         }
