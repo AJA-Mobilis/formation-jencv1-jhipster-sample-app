@@ -11,7 +11,7 @@ pipeline {
         }
 		stage('📦 Archiving Artefacts') {
 			steps {
-				archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
+				archiveArtifacts artifacts: 'target/jhipster-sample-application*.jar', followSymlinks: false
 			}
 		}
     }
