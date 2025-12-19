@@ -399,7 +399,7 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-					<htmlOutput>true</htmlOutput>
+					<xmlOutput>true</xmlOutput>
 					<includeFilterFile>spotbugs-security-include.xml</includeFilterFile>
 					<excludeFilterFile>spotbugs-security-exclude.xml</excludeFilterFile>
 					<plugins>

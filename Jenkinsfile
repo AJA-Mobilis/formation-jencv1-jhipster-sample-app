@@ -15,6 +15,7 @@ pipeline {
     post {
         // Après exécution du pipeline quel que soit le résultat des étapes précédentes
         always {
+			recordIssues sourceCodeRetention: 'LAST_BUILD', tools: [spotBugs(skipSymbolicLinks: true, useRankAsPriority: true)]
             // Nettoyage du workspace
             cleanWs(deleteDirs: true, notFailBuild: true)
             echo 'End'
