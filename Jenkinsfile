@@ -5,7 +5,7 @@ pipeline {
 			steps {
 				sh '''
 					chmod u+x ./mvnw
-					./mvnw clean install -DskipTests spotbugs:spotbugs -Dskip.test -Darguments="-Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false
+					./mvnw clean install -DskipTests spotbugs:spotbugs -Dskip.test -Darguments="-Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false"
 				'''
 			}
         }
