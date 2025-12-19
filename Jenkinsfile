@@ -5,7 +5,7 @@ pipeline {
 			steps {
 				sh '''
 					chmod u+x ./mvnw
-					./mvnw clean install surefire:test spotbugs:spotbugs -Darguments="-Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false"
+					./mvnw clean install spotbugs:spotbugs -Darguments="-Dmaven.javadoc.skip=true -Dmaven.javadoc.failOnError=false"
 				'''
 			}
         }
